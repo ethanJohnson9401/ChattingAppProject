@@ -4,11 +4,11 @@ import java.awt.event.*;
 public class Channel extends GUI{
 
     GUI m_channel;
-    Chat m_chat;
     JLabel m_label;
-    String[] options = {"0","1","2"};
+    String[] options = {"Sports","1","2"};
     JComboBox<String> m_dropdown = new JComboBox<>(options);
     String username;
+    SportsChat m_sports;
     
     public Channel() {
         super("Channel Select", 200, 200, false);
@@ -23,7 +23,7 @@ public class Channel extends GUI{
                 // Display the selected item
                 switch (selectedItem) {
                     case 0:
-                        
+                        m_sports = new SportsChat(username);
                         break;
                     
                     case 1:

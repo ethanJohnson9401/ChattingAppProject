@@ -40,7 +40,6 @@ public class Main {
         // Create GUI on the Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Chat m_chat = new Chat("Example");
                 m_gui = new GUI("GUI",300,300);
                 label = new JLabel("Enter your name:");
                 textField = new JTextField(20);

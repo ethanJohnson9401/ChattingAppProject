@@ -71,8 +71,8 @@ public class Chat extends GUI{
         return sdf.format(new Date());
     }
     
-    public Chat(String name){
-        super("Chat", 500, 500);
+    public Chat(String name, String WindowName, int width, int height){
+        super(WindowName, width, height);
         m_chat = this;
         setLayout(new BorderLayout());
 
