@@ -70,6 +70,12 @@ public class GUI extends JFrame {
         }
     }
 
+    public void changeBackgroundColor(Color color, GUI gui) {
+        if (gui != null) {
+            gui.getContentPane().setBackground(color);
+        }
+    }
+
     public void changeBackgroundColor(String hexString, JLabel label, GUI gui){
         if ((gui != null) && (hexString.charAt(0) == '#') && (hexString.length() == 7)){
             String parse = hexString.substring(1);
@@ -79,6 +85,13 @@ public class GUI extends JFrame {
             } else {
                 changeFontColor(Color.WHITE, label);
             }
+            Color color = Color.decode(hexString);
+            gui.getContentPane().setBackground(color);
+        }
+    }
+
+    public void changeBackgroundColor(String hexString, GUI gui){
+        if ((gui != null) && (hexString.charAt(0) == '#') && (hexString.length() == 7)){
             Color color = Color.decode(hexString);
             gui.getContentPane().setBackground(color);
         }

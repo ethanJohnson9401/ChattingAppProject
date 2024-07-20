@@ -37,7 +37,11 @@ public class Chat extends GUI{
             // Username and timestamp
             JLabel userLabel = new JLabel(username + " | " + getCurrentTime());
             userLabel.setFont(new Font("Arial", Font.PLAIN, 10));
-            userLabel.setForeground(Color.GRAY);
+            if (getChatBackgroundColor() >= Integer.parseInt("505050",16)){
+                userLabel.setForeground(Color.BLACK);
+            } else {
+                userLabel.setForeground(Color.WHITE);
+            }
             messageContainer.add(userLabel, BorderLayout.NORTH);
             
             // Message text
@@ -45,7 +49,13 @@ public class Chat extends GUI{
             messageTextArea.setEditable(false);
             messageTextArea.setLineWrap(true);
             messageTextArea.setWrapStyleWord(true);
-            messageTextArea.setBackground(Color.lightGray);
+            if (this.messagePanel.getBackground() == Color.lightGray){
+                messageTextArea.setBackground(Color.DARK_GRAY);
+                messageTextArea.setForeground(Color.lightGray);
+            } else {
+                messageTextArea.setBackground(Color.lightGray);
+                messageTextArea.setForeground(Color.DARK_GRAY);
+            }
             JScrollPane messageScrollPane = new JScrollPane(messageTextArea);
             messageScrollPane.setBorder(BorderFactory.createEmptyBorder());
             messageContainer.add(messageScrollPane, BorderLayout.CENTER);
@@ -69,6 +79,23 @@ public class Chat extends GUI{
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
+    }
+
+    public void changeChatBackgroundColor(Color color){
+        this.messagePanel.setBackground(color);
+    }
+
+    public void changeChatBackgroundColor(String hexString){
+        if ((hexString.charAt(0) == '#') && (hexString.length() == 7)){
+            Color color = Color.decode(hexString);
+            this.messagePanel.setBackground(color);
+        }
+    }
+
+    public int getChatBackgroundColor(){
+        Color color = this.messagePanel.getBackground();
+        String hex =  Integer.toHexString(color.getRed()) + Integer.toHexString(color.getGreen()) + Integer.toHexString(color.getBlue());
+        return Integer.parseInt(hex,16);
     }
     
     public Chat(String name, String WindowName, int width, int height){
